@@ -1,5 +1,7 @@
-const { response } = require('express')
-const express = require('express')
+import dotenv from 'dotenv'
+import express from 'express'
+
+dotenv.config()
 const app = express()
 app.use(express.json())
 let empregados = []
@@ -36,9 +38,9 @@ app.put('/:id', (request, response) => {
 
   app.delete('/:id', (request, response) => {
     const id = Number(request.params.id)  
-    
+
     empregados = empregados.filter(empregado => empregado.id !== id)  
     response.json(empregados)
   })
 
-app.listen(3333)
+app.listen(process.env.PORT || 3000)
