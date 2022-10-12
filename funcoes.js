@@ -29,6 +29,7 @@ async function cadastrar(){
     .catch(error => {
         alert(error)
     })
+    document.getElementById("id").value = ''
     consultar()
 }
 
@@ -48,19 +49,17 @@ async function consultar(){
 }
 
 async function remove(id){
-    document.getElementById("id").value = id
-    let dado = document.getElementById("id").value
     
-        await fetch(`http://localhost:3000/${dado}`, {
-            method: 'DELETE'
-        })
-        .then (reponse => {
-            alert(`O Funcionario foi removido com sucesso`)
-            consultar()
-        })
-        .catch( error => {
-            alert(`Problema ne remoção`)
-        })
+    await fetch(`http://localhost:3000/${id}`, {
+        method: 'DELETE'
+    })
+    .then (reponse => {
+        alert(`O Funcionario foi removido com sucesso`)
+         consultar()
+    })
+    .catch( error => {
+       alert(`Problema ne remoção`)
+    })
     
 }
 
